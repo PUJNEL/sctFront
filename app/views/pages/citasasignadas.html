@@ -1,0 +1,98 @@
+<div class="row">
+			<div class="col-md-12">
+				
+
+
+
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+		                Citas asignadas
+		            </div>
+		            <!-- /.panel-heading -->
+		            <div class="panel-body">
+		            	<div class="row">
+		            		<div class="col-md-12">
+		            			Seleccione la cita para la que requiera el turno:
+		            		</div>
+		            	</div>
+		            	<pre>
+		            	 {{citas | json}}
+		            	 </pre>
+		                <div class="table-responsive form-group">
+		                    <table class="table">
+		                        <thead>
+		                            <tr>
+		                                <th>Nombre</th>
+		                                <th>Fecha / Hora</th>
+		                                <th>Medico</th>		                                
+		                                <th>Acciones</th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+		                            <tr ng-repeat="cita in citas">
+		                            	<td>{{cita.tipo}}</td>
+		                                <td>{{cita.fecha_hora}}</td>
+		                                <td>{{cita.medico}}</td>	
+		                                <td>
+		                                	<div class="radio">
+                                    			<label>
+                                        			<a href="javascript:void(1)" class="btn btn-default" ng-click="detalleCita(cita)" data-toggle="modal" data-target="#myModal"><span class="fa fa-search-plus"></span></a><!-- Radio 1 -->
+                                    			</label>
+                                			</div>
+		                                </td>	
+		                            </tr>
+		                        </tbody>
+		                    </table>
+		                </div>
+		                <!-- /.table-responsive -->
+
+
+
+
+						<!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{citaSeleccionada.tipo}}</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                    	<table class="table table-striped table-bordered table-hover">
+					                        <tbody>
+					                           	<tr>
+                                    				<th>TIPO: </th>
+                                    				<td>{{citaSeleccionada.tipo}}</td>
+	                                    		</tr>
+	                                    		<tr>
+	                                    			<th>FECHA Y HORA: </th>
+	                                    			<td>{{citaSeleccionada.fecha_hora}}</td>
+	                                    		</tr>
+	                                    		<tr>
+	                                    			<th>MÉDICO: </th>
+	                                    			<td>{{citaSeleccionada.medico}}</td>
+	                                    		</tr>
+					                        </tbody>
+					                    </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary" ng-click="generarTurno()">Generar Turno</button>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+
+
+
+		            </div>
+		            <!-- /.panel-body -->
+		        </div>
+		        <!-- /.panel -->
+
+			</div>
+		</div>
