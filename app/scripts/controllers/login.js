@@ -35,14 +35,16 @@ angular.module('sbAdminApp')
 
                     	
                     }else{
-                    	sessionStorage.setItem("group_id",result.group);
-		    			sessionStorage.setItem("token",$base64.encode($scope.user+":"+$scope.pass));
-		    			if(result.group == 1) // paciente
-		  					$location.path("/dashboard/citas");
-                    	if(result.group == 2) // doctor
-		  					$location.path("/dashboard/doctor");
-		  				if(result.group == 3) // cajero
-		  					$location.path("/dashboard/cajero");
+                      console.log(result);
+                    	sessionStorage.setItem("group_id",result.user.group_id);
+        		    			sessionStorage.setItem("token",$base64.encode($scope.user+":"+$scope.pass));
+                      sessionStorage.setItem("user_id",result.user.id);
+        		    			if(result.user.group_id == 1) // paciente
+        		  					$location.path("/dashboard/citas");
+                      if(result.user.group_id == 2) // doctor
+        		  					$location.path("/dashboard/doctor");
+        		  				if(result.user.group_id == 3) // cajero
+        		  					$location.path("/dashboard/cajero");
                     }
                 }).error(function (data, status, headers, config) {
                     console.log(data);

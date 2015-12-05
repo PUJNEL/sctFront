@@ -140,6 +140,44 @@ angular
           }
         }
     })
+      .state('dashboard.cajero',{
+        url:'/cajero',
+        controller:'cajeroCtrl',
+        templateUrl:'views/pages/cajero.html',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+              'scripts/controllers/cajero.js',
+              'scripts/directives/timeline/timeline.js',
+              'scripts/directives/notifications/notifications.js',
+              'scripts/directives/chat/chat.js',
+              'scripts/directives/dashboard/stats/stats.js'
+              ]
+            })
+          }
+        }
+    })
+       .state('dashboard.medico',{
+        url:'/medico',
+        controller:'medicoCtrl',
+        templateUrl:'views/pages/medico.html',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+              'scripts/controllers/medico.js',
+              'scripts/directives/timeline/timeline.js',
+              'scripts/directives/notifications/notifications.js',
+              'scripts/directives/chat/chat.js',
+              'scripts/directives/dashboard/stats/stats.js'
+              ]
+            })
+          }
+        }
+    })
       .state('dashboard.blank',{
         templateUrl:'views/pages/blank.html',
         url:'/blank'
