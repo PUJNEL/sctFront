@@ -13,6 +13,7 @@ angular
     'ui.router',
     'ui.bootstrap',
     'angular-loading-bar',
+    'base64'
   ])
   .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
     
@@ -101,6 +102,25 @@ angular
         templateUrl:'views/pages/turno.html',
         url:'/turno'
     })
+      .state('dashboard.solicitudturno',{
+        url:'/solicitudturno',
+        templateUrl:'views/pages/solicitudturno.html',
+        controller:'solicitudTurnoCtrl',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+              'scripts/controllers/solicitudturno.js',
+              'scripts/directives/timeline/timeline.js',
+              'scripts/directives/notifications/notifications.js',
+              'scripts/directives/chat/chat.js',
+              'scripts/directives/dashboard/stats/stats.js'
+              ]
+            })
+          }
+        }
+    })
       .state('dashboard.citas',{
         url:'/citas',
         controller:'CitasasignadasCtrl',
@@ -126,7 +146,22 @@ angular
     })
       .state('login',{
         templateUrl:'views/pages/login.html',
-        url:'/login'
+        url:'/login',
+        controller:'LoginCtrl',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+              'scripts/controllers/login.js',
+              'scripts/directives/timeline/timeline.js',
+              'scripts/directives/notifications/notifications.js',
+              'scripts/directives/chat/chat.js',
+              'scripts/directives/dashboard/stats/stats.js'
+              ]
+            })
+          }
+        }
     })
       .state('dashboard.chart',{
         templateUrl:'views/chart.html',

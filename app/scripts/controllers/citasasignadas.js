@@ -7,7 +7,7 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-  .controller('CitasasignadasCtrl', function($scope,$position) {
+  .controller('CitasasignadasCtrl', function($scope,$position,$http,$base64) {
   	$scope.prueba="Esto se carga desde el controlador"
   	$scope.citas = [
   		{
@@ -30,11 +30,19 @@ angular.module('sbAdminApp')
   			fecha_hora:"",
   			medico: ""
   		}
+
+      var user = "paciente"
+      var pass = "paciente"
+      var authBase64 = user+":"+pass
+    $scope.cargarCitas = function(){
+          console.log($base64.encode(authBase64))
+    }
   	$scope.detalleCita = function(cita){
 		//alert(JSON.stringify(cita));
   		$scope.citaSeleccionada = cita
   	}
   	$scope.generarTurno = function(){
-  		alert(JSON.stringify($scope.citaSeleccionada))
+      console.log($base64.encode(authBase64))
+  		//alert(JSON.stringify($scope.citaSeleccionada))
   	}
   });
